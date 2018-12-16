@@ -18,21 +18,21 @@ namespace Dictionary
             Console.ReadLine();//keep the console on the screen
         }
 
-        public static List<Meta> GetWebstersWords()
+        public static Meta GetWebstersWords()
         {
-            var result = new List<Meta>();//will hold our deserialized data
+            SearchWords searchwords = new SearchWords();
+            var result = new Meta();//will hold our deserialized data
             var webClient = new WebClient();
-            byte[] webstersWords = webClient.DownloadData("https://dictionaryapi.com/api/v3/references/collegiate/json/big?key=5c3ec0b3-41ae-4bfb-a793-d467709d3d98");
+            byte[] webstersWords = webClient.DownloadData("https://dictionaryapi.com/api/v3/references/collegiate/json/big?key=yourkey");
             var serializer = new JsonSerializer();
             using (var stream = new MemoryStream(webstersWords))
             using (var reader = new StreamReader(stream))
             using (var jsonReader = new JsonTextReader(reader))
             {
-               result = serializer.Deserialize<SearchWords>(jsonReader).Metas;
+               result = (Meta) (serializer.Deserialize(jsonReader));
             }
 
             return result;
-
         }
     }
 }
