@@ -1,2 +1,0 @@
-The Consoloe app takes a word and find some details about the word using the Meriam Webster's API. We wilkl focus on finding the Id of the word.
-In order to run the programme you will need Visual Studio.
